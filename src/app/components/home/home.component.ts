@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  filter: string = 'all';
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  getFruityFilter($event: string) {
+    this.filter = $event
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -8,6 +8,7 @@ import {FormControl, FormGroup} from "@angular/forms";
 })
 export class SearchComponent implements OnInit {
   searchForm? : FormGroup
+  @Output() fruityFilter = new EventEmitter<string>()
 
   constructor() { }
 
@@ -17,7 +18,10 @@ export class SearchComponent implements OnInit {
     })
   }
 
-  onSubmit() {
-
+  onSubmit() : void {
+    let fruit = this.searchForm?.get('fruitName')?.value
+    this.fruityFilter.emit(fruit)
+    console.log(fruit)
   }
+
 }

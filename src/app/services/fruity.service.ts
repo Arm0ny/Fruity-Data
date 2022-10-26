@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {FruitInterface} from "../interfaces/FruityInterface";
 
@@ -11,7 +11,11 @@ export class FruityService {
 
   constructor(private http : HttpClient) { }
 
-  getFruits(fruit = 'all'): Observable<FruitInterface[]>{
-    return this.http.get<FruitInterface[]>(`${this.url}${fruit}`)
+  getFruits(): Observable<FruitInterface[]>{
+    return this.http.get<FruitInterface[]>(`${this.url}/all`)
+  }
+
+  getSelectedFruit(fruit : string) : Observable<FruitInterface>{
+    return this.http.get<FruitInterface>(`${this.url}${fruit}`)
   }
 }

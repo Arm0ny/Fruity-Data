@@ -1,4 +1,4 @@
-<main class="container bg-green-200 h-full m-auto flex-column">
-<app-search class="fixed bottom-4 w-full flex justify-center align-center"></app-search>
-  <app-fruits-cards></app-fruits-cards>
+<main class=" min-h-screen bg-green-200 h-full w-full flex-column">
+  <app-search (fruityFilter)="getFruityFilter($event)" class="bg-transparent fixed bottom-4 w-full flex justify-center align-center z-10"></app-search>
+  <app-fruits-cards [filter]="filter" class="h-full w-full"></app-fruits-cards>
 </main>
