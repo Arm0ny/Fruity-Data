@@ -11,11 +11,9 @@ export class FruityService {
 
   constructor(private http : HttpClient) { }
 
-  getFruits(): Observable<FruitInterface[]>{
-    return this.http.get<FruitInterface[]>(`${this.url}/all`)
+  getFruits(fruitName : string): Observable<FruitInterface[]>{
+    return this.http.get<FruitInterface[]>(`${this.url}${fruitName}`)
   }
 
-  getSelectedFruit(fruit : string) : Observable<FruitInterface>{
-    return this.http.get<FruitInterface>(`${this.url}${fruit}`)
-  }
+
 }

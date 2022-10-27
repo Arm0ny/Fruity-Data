@@ -13,22 +13,21 @@ export class FruitsCardsComponent implements OnChanges, OnInit{
   constructor(private fruityService : FruityService) { }
 
   fruits? : FruitInterface[]
-  @Input() filter : string = ''
+  @Input() filter : string = 'all'
 
   ngOnChanges(changes: SimpleChanges) {
-    if (this.filter){
-      this.getSelectedFruit(this.filter)
-    }else{
-      this.getFruits()
+    if (!this.filter){
+      this.filter = 'all'
     }
+    this.getFruits(this.filter)
   }
 
   ngOnInit(){
     this.getFruits()
-}
+  }
 
-  getFruits() : void{
-    this.fruityService.getFruits().subscribe( response => {
+  getFruits(fruitName = 'all') : void{
+    this.fruityService.getFruits(fruitName).subscribe( response => {
 
       this.fruits = response.map(fruit => ({
         name: fruit.name,
@@ -38,9 +37,5 @@ export class FruitsCardsComponent implements OnChanges, OnInit{
     })
   }
 
-  getSelectedFruit(filter : string){
-    this.fruityService.getSelectedFruit(filter).subscribe(response => {
-      this.fruits = [response]
-    })
-  }
+
 }
