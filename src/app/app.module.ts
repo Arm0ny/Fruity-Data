@@ -8,7 +8,7 @@ import { FruitsGridComponent } from './components/fruits-grid/fruits-grid.compon
 import {ReactiveFormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {ResponseInterceptor} from "./interceptors/response.interceptor";
-import { FruitCardComponent } from './components/fruits-grid/fruit-card/fruit-card.component';
+import { FruitCardComponent } from './components/fruit-card/fruit-card.component';
 
 @NgModule({
   declarations: [
