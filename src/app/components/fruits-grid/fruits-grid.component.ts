@@ -4,16 +4,17 @@ import {FruitInterface} from "../../interfaces/FruityInterface";
 
 
 @Component({
-  selector: 'app-fruits-cards',
-  templateUrl: './fruits-cards.component.html',
-  styleUrls: ['./fruits-cards.component.css']
+  selector: 'app-fruits-grid',
+  templateUrl: './fruits-grid.component.html',
+  styleUrls: ['./fruits-grid.component.css']
 })
-export class FruitsCardsComponent implements OnChanges, OnInit{
+export class FruitsGridComponent implements OnChanges, OnInit{
 
   constructor(private fruityService : FruityService) { }
 
   fruits? : FruitInterface[]
   @Input() filter : string = 'all'
+  isClicked: Boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
     if (!this.filter){
@@ -36,6 +37,8 @@ export class FruitsCardsComponent implements OnChanges, OnInit{
       }))
     })
   }
-
+  onClick(){
+    this.isClicked = !this.isClicked
+  }
 
 }

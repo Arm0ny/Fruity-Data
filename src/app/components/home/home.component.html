@@ -1,4 +1,4 @@
 <main class=" min-h-screen bg-green-200 h-full w-full flex-column">
   <app-search (fruityFilter)="getFruityFilter($event)" class="bg-transparent fixed bottom-4 w-full flex justify-center align-center z-10"></app-search>
-  <app-fruits-cards [filter]="filter" class="h-full w-full"></app-fruits-cards>
+  <app-fruits-grid [filter]="filter" class="h-full w-3/4 m-auto flex flex-wrap gap-8 justify-center align-center z-0 py-8"></app-fruits-grid>
 </main>
