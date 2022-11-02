@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FruitInterface} from "../../interfaces/FruityInterface";
-import {addDoc} from "@angular/fire/firestore";
 
 @Component({
   selector: 'app-fruit-card',

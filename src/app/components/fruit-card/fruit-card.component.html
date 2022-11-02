@@ -1,29 +1,49 @@
-<div *ngIf="fruit " (click)="onClick($event)"
-     class=" bg-green-50 flex justify-center items-center h-full w-full py-8 rounded-lg drop-shadow-xl">
+<div *ngIf="fruit" (click)="onClick($event)"
+     class="bg-green-50 flex justify-center items-center h-full w-full py-8 rounded-lg drop-shadow-xl">
     <ng-container *ngIf="!showDetails; else detailsShown">
-      <p>
-          {{fruit.name}}
-      </p>
+      <div class="flex align-center justify-center w-64 gap-4">
+        <p>
+            {{fruit.name}}
+        </p>
+        <img src="../../../assets/img/info-icon.svg" alt="info" loading="lazy"/>
+      </div>
     </ng-container>
 
   <ng-template #detailsShown>
-    <p>{{fruit.name}}</p>
-    <ul class="w-full h-full flex flex-col align-center justify-center">
-      <li>
-        <progress max="100" value="{{fruit.nutritions.carbohydrates}}"></progress>
+    <div class="px-4 flex flex-col h-full w-auto justify-center align-center gap-4">
+      <div class="flex justify-between align-center">
+        <span class=" flex align-center gap-4"><p>{{fruit.name}}</p><p class="bg-green-500 text-white px-4 rounded-md">{{fruit.nutritions.calories}} kcal</span>
+        <img src="../../../assets/img/close-icon.png" alt="close" loading="lazy"/>
+      </div>
+    <ul class="flex flex-col md:flex-row align-center justify-center gap-6">
+      <li class="bg-green-200 flex flex-col align-center justify-center shadow-lg rounded-lg">
+        <circle-progress [percent]="fruit.nutritions.carbohydrates"
+                         [maxPercent]="100"
+                         [subtitle]="'carbs'"
+        ></circle-progress>
+        <span class="flex mb-4 ml-4 text-green-500"><p>of which sugars:</p> <p class="bg-green-500 px-4 text-white rounded-md">{{fruit.nutritions.sugar}}g</p></span>
       </li>
-      <li>
-        <progress max="100" value="{{fruit.nutritions.carbohydrates}}"></progress>
+      <li class="bg-yellow-200 flex align-center justify-center shadow-lg rounded-lg">
+        <circle-progress [percent]="fruit.nutritions.fat"
+                         [maxPercent]="100"
+                         [subtitle]="'fat'"
+                         [outerStrokeColor]="'#FFB80E'"
+                         [innerStrokeColor]="'#fcde83'"
+        ></circle-progress>
       </li>
-      <li>
-        <progress max="100" value="{{fruit.nutritions.carbohydrates}}"></progress>
-      </li>
-      <li>
-        <progress max="100" value="{{fruit.nutritions.carbohydrates}}"></progress>
+      <li class="bg-red-200 flex align-center justify-center shadow-lg rounded-lg">
+        <circle-progress [percent]="fruit.nutritions.protein"
+                         [maxPercent]="100"
+                         [subtitle]="'proteins'"
+                         [outerStrokeColor]="'#D70040'"
+                         [innerStrokeColor]="'#ffacb5'"
+        ></circle-progress>
       </li>
     </ul>
+    </div>
   </ng-template>
 </div>
+
 
 
 

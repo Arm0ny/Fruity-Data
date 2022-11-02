@@ -1,4 +1,12 @@
 <main class=" min-h-screen bg-green-200 h-full w-full flex-column">
-  <app-search (fruityFilter)="getFruityFilter($event)" class="bg-transparent fixed bottom-4 w-full flex justify-center align-center z-10"></app-search>
-  <app-fruits-grid [filter]="filter" class="h-full w-3/4 m-auto flex flex-wrap gap-8 justify-center align-center z-0 py-8"></app-fruits-grid>
+  <app-search (fruityFilter)="getFilteredFruits($event)" class="bg-transparent fixed bottom-4 w-full flex justify-center align-center z-10"></app-search>
+  <div *ngIf="fruits?.length ; else noFruitsFound" class="h-full w-3/4 m-auto pb-32 flex  flex-wrap gap-8 justify-center align-center z-0 py-8">
+    <app-fruit-card class="flex" *ngFor="let fruit of fruits" [fruit]="fruit"></app-fruit-card>
+  </div>
+
+  <ng-template #noFruitsFound>
+    <div class="h-full w-3/4 m-auto pb-32 flex  flex-wrap gap-8 justify-center align-center z-0 py-8">
+      <span class="p-4"><p class="text-center">No fruit was found</p></span>
+    </div>
+  </ng-template>
 </main>

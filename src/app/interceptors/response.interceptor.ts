@@ -16,7 +16,7 @@ export class ResponseInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       map(response => {
         if (response instanceof HttpResponse && !Array.isArray(response.body)) {
-          console.log(response.clone({body: [response.body]}))
+          //console.log(response.clone({body: [response.body]}))
           return response.clone({body: [response.body]})
         }
           return response

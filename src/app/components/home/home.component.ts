@@ -1,19 +1,49 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {FruityService} from "../../services/fruity.service";
+import {FruitInterface} from "../../interfaces/FruityInterface";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  filter: string = 'all';
+export class HomeComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  fruits? : FruitInterface[]
+  @Input() filter : string = 'all'
+  isClicked: Boolean = false;
 
-  ngOnInit(): void {
+  constructor(private fruityService : FruityService) { }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (!this.filter){
+      this.filter = 'all'
+    }
+    this.getFruits(this.filter)
+    console.log('onChanges')
   }
 
-  getFruityFilter($event: string) {
+  ngOnInit(): void {
+    this.getFruits()
+  }
+
+  getFilteredFruits($event: string) {
     this.filter = $event
+    if (!this.filter){
+      this.filter = 'all'
+    }
+    this.getFruits(this.filter)
+    console.log('filtered')
+  }
+
+  getFruits(fruitName = 'all') : void{
+    this.fruityService.getFruits(fruitName).subscribe( response => {
+
+      this.fruits = response.map(fruit => ({
+        name: fruit.name,
+        id : fruit.id,
+        nutritions : fruit.nutritions
+      }))
+    })
   }
 }
