@@ -11,11 +11,11 @@ export class HomeComponent implements OnInit, OnChanges {
 
   fruits? : FruitInterface[]
   @Input() filter : string = 'all'
-  isClicked: Boolean = false;
+
 
   constructor(private fruityService : FruityService) { }
 
-  ngOnChanges(changes: SimpleChanges) {
+  ngOnChanges() {
     if (!this.filter){
       this.filter = 'all'
     }
